@@ -2,7 +2,7 @@ package arrays;
 
 import java.util.Scanner;
 
-public class FindTheBiggestValue {
+public class FindTheMaxValue {
     public static void main(String[] args) {
         System.out.println("Type the size of array n x n: ");
         Scanner sc = new Scanner(System.in);
@@ -23,6 +23,6 @@ public class FindTheBiggestValue {
                 }
             }
         }
-        System.out.println("The biggest value is: " + max);
+        System.out.println("The max value is: " + max);
     }
 }
