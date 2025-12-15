@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class readNum {
+public class ReadNum {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập vào số nguyễn không âm, tối đa 3 chữ số");
