@@ -3,58 +3,65 @@ package OOP;
 import java.util.Scanner;
 
 public class QuadraticEquation {
-    // Biến instance (thuộc tính của đối tượng)
+    // 1. Trường dữ liệu private
     private double a, b, c;
 
-    // Constructor
+    // 2. Phương thức khởi tạo (Constructor)
     public QuadraticEquation(double a, double b, double c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
-    // Phương thức tính Delta
+    // 3. Phương thức getter
+    public double getA() {
+        return a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public double getC() {
+        return c;
+    }
+
+    // 4. Phương thức getDiscriminant() - trả về Delta
     public double getDiscriminant() {
         return b * b - 4 * a * c;
     }
 
-    // Phương thức tính nghiệm
-    public void calculateRoots() {
-        double delta = getDiscriminant();
+    // 5. Phương thức getRoot1()
+    public double getRoot1() {
+        if (getDiscriminant() < 0) return 0;
+        // Đề yêu cầu dùng Math.pow(x, 0.5)
+        return (-b + Math.pow(getDiscriminant(), 0.5)) / (2 * a);
+    }
 
-        if (delta > 0) {
-            double r1 = (-b + Math.sqrt(delta)) / (2 * a);
-            double r2 = (-b - Math.sqrt(delta)) / (2 * a);
-            System.out.println("Phương trình có 2 nghiệm phân biệt: " + r1 + " và " + r2);
-        } else if (delta == 0) {
-            double r1 = -b / (2 * a);
-            System.out.println("Phương trình có nghiệm kép: " + r1);
-        } else {
-            System.out.println("Phương trình vô nghiệm");
-        }
+    // 6. Phương thức getRoot2()
+    public double getRoot2() {
+        if (getDiscriminant() < 0) return 0;
+        return (-b - Math.pow(getDiscriminant(), 0.5)) / (2 * a);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Nhập a: ");
+        System.out.println("Enter a, b, c: ");
         double a = sc.nextDouble();
-
-        System.out.println("Nhập b: ");
         double b = sc.nextDouble();
-
-        System.out.println("Nhập c: ");
         double c = sc.nextDouble();
 
-        // Kiểm tra a khác 0 để đảm bảo là phương trình bậc 2
-        if (a == 0) {
-            System.out.println("Đây không phải phương trình bậc 2.");
-        } else {
-            // Tạo đối tượng
-            QuadraticEquation qe = new QuadraticEquation(a, b, c);
+        QuadraticEquation qe = new QuadraticEquation(a, b, c);
 
-            // BƯỚC CÒN THIẾU CỦA BẠN LÀ Ở ĐÂY: Gọi phương thức để thực thi
-            qe.calculateRoots();
+        double delta = qe.getDiscriminant();
+
+        if (delta > 0) {
+            System.out.println("The equation has two roots: " + qe.getRoot1() + " and " + qe.getRoot2());
+        } else if (delta == 0) {
+            System.out.println("The equation has one root: " + qe.getRoot1());
+        } else {
+            System.out.println("The equation has no roots");
         }
 
         sc.close();
